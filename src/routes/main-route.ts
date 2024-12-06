@@ -3,7 +3,7 @@ import { configuration } from '../config.js';
 import { validarRUT } from '../app/rut.js';
 import { contarCoincidenciasEnCadena } from '../app/cadenas.js';
 
-let mainRouter = express.Router();
+const mainRouter = express.Router();
 
 mainRouter.get("/", (_req, res) => {
     return res.send(`Hola mundo al usuario ${configuration.username}`);
