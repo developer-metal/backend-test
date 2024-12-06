@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        USERNAME = "extlespinosa"
+        USERNAME = "extlespinosa",
     }
     stages{
         stage("build - instalacion dependencias"){
