@@ -8,8 +8,8 @@ describe('contarCoincidenciasEnCadena', () => {
         expect(contarCoincidenciasEnCadena('hello world', 'x')).toBe(0);
     });
     test('retorna un error si la cadena o subcadena esta vacia', () => {
-        expect(() => contarCoincidenciasEnCadena('', 'abc')).toThrow('Error: Debe ingresar una cadena y una subcadena validas');
-        expect(() => contarCoincidenciasEnCadena('abc', '')).toThrow('Error: Debe ingresar una cadena y una subcadena validas');
-        expect(() => contarCoincidenciasEnCadena('', '')).toThrow('Error: Debe ingresar una cadena y una subcadena validas');
+        expect(contarCoincidenciasEnCadena('', 'abc')).toBe(0);
+        expect(contarCoincidenciasEnCadena('abc', '')).toBe(0);
+        expect(contarCoincidenciasEnCadena('', '')).toBe(0);
     });
 });

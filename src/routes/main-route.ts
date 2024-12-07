@@ -2,27 +2,21 @@ import express from 'express';
 import { configuration } from '../config.js';
 import { validarRUT } from '../app/rut.js';
 import { contarCoincidenciasEnCadena } from '../app/cadenas.js';
-
 const mainRouter = express.Router();
-
 mainRouter.get("/", (_req, res) => {
     return res.send(`Hola mundo al usuario ${configuration.username}`);
 });
-
 mainRouter.get("/api-key", (_req, res) => {
     return res.send(`la apikey de mi aplicacion es: ${configuration.apikey}`);
 });
-
 mainRouter.get("/validar-rut", (req, res) => {
     const { rut } = req.query as { rut: string };
     let resultado = validarRUT(rut);
     return res.send(`El rut suministrado (${rut}) es : ${resultado ? "valido" : "invalido"}`);
 });
-
 mainRouter.get("/buscar-subcadena", (req, res) => {
     const { cadena, subcadena } = req.query as { cadena: string, subcadena: string };
     const cantidadRepeticiones = contarCoincidenciasEnCadena(cadena, subcadena);
     return res.send(`La cadena "${cadena}" tiene ${cantidadRepeticiones} repeticiones de la subcadena "${subcadena}"`);
 });
-
 export default mainRouter;
