@@ -5,7 +5,7 @@ describe('configuration', () => {
       process.env = { ...originalEnv };
     });
   
-    it('should use default values when environment variables are not set', () => {
+    it('Usar valores por default cuando las variables de entorno no estan configuradas', () => {
       delete process.env.USERNAME;
       delete process.env.APIKEY;
       delete process.env.PORT;
@@ -18,7 +18,7 @@ describe('configuration', () => {
       expect(configuration.apikey).toBe('default-key');
       expect(configuration.port).toBe('4000');
     });
-    it('should use environment variables when they are set', () => {
+    it('Utilizar variables de entorno cuando se configuran', () => {
       process.env.USERNAME = 'testuser';
       process.env.APIKEY = 'testkey';
       process.env.PORT = '3000';
