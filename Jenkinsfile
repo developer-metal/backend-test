@@ -71,8 +71,10 @@ pipeline {
                 script {
                     docker.withRegistry("http://localhost:8082", "registry"){
                         sh "docker build -t ${imageName} ."
-                        sh "docker tag ${imageName}:latest ${registry}/${imageName}:latest"
+                        sh "docker tag ${imageName}:latest ${latestTag}"
+                        sh "docker tag ${imageName}:latest ${buildNumberTag}"
                         sh "docker push ${registry}/${imageName}:latest"
+                        sh "docker push ${buildNumberTag}"
                     }
                 }
            } 
