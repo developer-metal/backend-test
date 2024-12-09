@@ -2,6 +2,10 @@ pipeline {
     agent any
     environment {
         USERNAME = "extlespinosa"
+        def imageName = "backend-test"
+        def registry = "localhost:8082"
+        def latestTag = "${registry}/${imageName}:latest"
+        def buildNumberTag = "${registry}/${imageName}:${BUILD_NUMBER}"
     }
     stages{
         stage("build - instalacion dependencias"){
@@ -66,9 +70,9 @@ pipeline {
            steps{
                 script {
                     docker.withRegistry("http://localhost:8082", "registry"){
-                        sh 'docker build -t backend-test .'
-                        sh 'docker tag backend-test:latest localhost:8082/backend-test:latest'
-                        sh 'docker push localhost:8082/backend-test:latest'
+                        sh "docker build -t ${imageName} ."
+                        sh "docker tag ${imageName}:latest ${registry}/${imageName}:latest"
+                        sh "docker push ${registry}/${imageName}:latest"
                     }
                 }
            } 
