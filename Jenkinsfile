@@ -5,7 +5,7 @@ pipeline {
         def imageName = "backend-test"
         def registry = "localhost:8082"
         def latestTag = "${registry}/${imageName}:latest"
-        def buildNumberTag = "${registry}/${imageName}:${BUILD_NUMBER}"
+        def buildNumber = "${registry}/${imageName}:${BUILD_NUMBER}"
     }
     stages{
         stage("build - instalacion dependencias"){
@@ -71,10 +71,10 @@ pipeline {
                 script {
                     docker.withRegistry("http://localhost:8082", "registry"){
                         sh "docker build -t ${imageName} ."
-                        sh "docker tag ${imageName}:latest ${latestTag}"
-                        sh "docker tag ${imageName}:latest ${buildNumberTag}"
-                        sh "docker push ${registry}/${imageName}:latest"
-                        sh "docker push ${buildNumberTag}"
+                        sh "docker tag ${imageName}:latest ${latestTag}:latest"
+                        sh "docker tag ${imageName}:latest ${buildNumber}"
+                        sh "docker push ${latestTag}:latest"
+                        sh "docker push ${buildNumber}"
                     }
                 }
            } 
